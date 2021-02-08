@@ -24,6 +24,24 @@
 defined( 'ABSPATH' ) or die( 'Something went wrong...' );
 
 /**
+ * Deaktiviere die Adminbar für Angemeldete Benutzer außer Administratoren, Authoren und Editoren
+ * @param any content
+ */
+function my_function_admin_bar($content) {
+    return (current_user_can( 'administrator' ) || current_user_can( 'author' ) || current_user_can( 'editor' ) ) ? $content : false;
+}
+add_filter( 'show_admin_bar' , 'my_function_admin_bar');
+
+/**
+ * Weiterleitung zur Startseite nach dem Ausloggen
+ */
+function redirect_after_logout(){
+	wp_redirect( home_url() );
+	exit();
+}
+add_action('wp_logout', 'redirect_after_logout');
+
+/**
  * Felix's beispiel Klasse
  */
 class FX{
