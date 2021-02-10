@@ -41,17 +41,4 @@ function redirect_after_logout(){
 }
 add_action('wp_logout', 'redirect_after_logout');
 
-/**
- * Felix's beispiel Klasse
- */
-class FX{
-    /**
-     * Some example function to add a Text to every Page
-     */
-    public static function content($content){
-        return $content .= "<p>Felix's Plugin sagt Hallo!</p>";
-    }
-}
-
-add_action( "the_content", array('FX', "content"));
 ?>
